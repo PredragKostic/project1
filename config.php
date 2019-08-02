@@ -9,5 +9,5 @@ define("DB_NAME", "shareboard");
 
 //Define URL
 
-define("ROOT_PATH", "/");
+define("ROOT_PATH", "/project1/");
 define("ROOT_URL", "http://localhost/project1/");
