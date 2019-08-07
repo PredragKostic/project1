@@ -1,8 +1,8 @@
 <html>
 <head>
 <title>Shareboard</title>
-<link rel="stylesheet" href="assets/css/bootstrap.css">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="http://localhost/project1/assets/css/bootstrap.css">
+<link rel="stylesheet" href="http://localhost/project1/assets/css/style.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
