@@ -1,17 +1,20 @@
 <?php
 
-class ShareModel extends Model{
-public function Index(){
+class ShareModel extends Model
+{
+  public function Index()
+  {
     $this->query('SELECT * FROM shares ORDER BY create_date DESC');
     $rows = $this->resultSet();
     return $rows;
   }
 
-  public function add(){
+  public function add()
+  {
     //sanitize post
     $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-    if($post['submit']){
+    if ($post['submit']) {
       //Insert into MySQL
       $this->query('INSERT INTO shares (title, body, link, user_id) VALUES(:title, :body, :link, :user_id)');
       $this->bind(':title', $post['title']);
@@ -20,13 +23,11 @@ public function Index(){
       $this->bind(':user_id', 1);
       $this->execute();
       //Verify
-      if($this->lastInsertId()){
+      if ($this->lastInsertId()) {
         //Redirect
-        header('Location: '.ROOT_URL.'shares');
+        header('Location: ' . ROOT_URL . 'shares');
       }
     }
     return;
-
   }
-
 }
