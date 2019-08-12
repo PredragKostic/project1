@@ -7,10 +7,15 @@ class UserModel extends Model
     //sanitize post
     $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+
+
     $password = md5($post['password']);
 
     if ($post['submit']) {
-
+      if ($post['name'] == '' || $post['email'] == '' || $post['password'] == '') {
+        Messages::setMsg('Please Fill In All Fields', 'error');
+        return;
+      }
       //Insert into MySQL
       $this->query('INSERT INTO users (name, email, password) VALUES(:name, :email, :password)');
       $this->bind(':name', $post['name']);
@@ -41,7 +46,7 @@ class UserModel extends Model
 
       $row = $this->single();
 
-      if($row){
+      if ($row) {
         $_SESSION['is_logged_in'] = true;
         $_SESSION['user_data'] = array(
           "id" => $row['id'],
@@ -51,7 +56,7 @@ class UserModel extends Model
         );
         header('Location: ' . ROOT_URL . 'shares');
       } else {
-        echo 'Incorect Loggin';
+        Messages::setMsg('Incorect Login', 'error');
       }
       return;
     }
